@@ -1,0 +1,38 @@
+
+<div class="ticket-list-container">
+
+  <div class="header">
+    <h2>My Support Tickets</h2>
+
+    <a routerLink="/employee/tickets/new" class="create-button">
+      + Create Ticket
+    </a>
+  </div>
+
+  <p *ngIf="isLoading">Loading tickets...</p>
+
+  <p class="error" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </p>
+
+  <div *ngIf="!isLoading && tickets.length === 0">
+    No tickets found. Create your first support ticket!
+  </div>
+
+  <div class="ticket-card" *ngFor="let ticket of tickets">
+
+    <h3>#{{ ticket.id }} - {{ ticket.title }}</h3>
+
+    <p>{{ ticket.description }}</p>
+
+    <div class="ticket-info">
+      <span>Environment: {{ ticket.environment }}</span>
+      <span>Status: {{ ticket.status }}</span>
+      <span>AI Analysis: {{ ticket.aiAnalysisStatus }}</span>
+    </div>
+
+    <small>Created: {{ ticket.createdAt | date:'medium' }}</small>
+
+  </div>
+
+</div>
